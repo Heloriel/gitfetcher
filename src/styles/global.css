@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  @apply font-poppins
+}
+
+main{
+  @apply w-screen h-screen flex flex-col;
+}
