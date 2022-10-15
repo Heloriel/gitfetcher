@@ -40,11 +40,11 @@ function App() {
 
   return (
     <Layout>
-      <div className="flex flex-col items-center justify-center flex-1 gap-6">
+      <form className="flex flex-col items-center justify-center flex-1 gap-6" onSubmit={() => routeChange(userSearch.search)}>
         <Logo width={372} height={78} dark={themeContext.darkMode} />
-        <SearchBar invalid={invalidSearch}/>
-        <Button title="GO" onClick={() => routeChange(userSearch.search)} />
-      </div>
+          <SearchBar invalid={invalidSearch}/>
+          <Button title="GO" type="submit" />
+      </form>
     </Layout>     
   )
 }
