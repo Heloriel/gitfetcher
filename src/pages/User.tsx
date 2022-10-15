@@ -5,15 +5,20 @@ import Layout from "../components/Layout";
 import { SearchBar } from '../components/SearchBar';
 import { Button } from '../components/Button';
 import { SearchContext } from "../contexts/SearchContext";
+import { ProfileCard } from "../components/ProfileCard";
 
 interface IUser {
   login: string;
-  bio?: string;
+  name: string;
+  blog?: string;
+  avatar_url: string;
+  followers: number;
+  following: number;
 }
 
 export default function User() {
   const params = useParams<{user: string}>();
-  const [user, setUser] = useState({} as IUser);
+  const [userData, setUserData] = useState({} as IUser);
   const [invalidSearch, setInvalidSearch] = useState(false);
   const navigate = useNavigate();
 
@@ -38,7 +43,7 @@ export default function User() {
   useEffect(() => {
     axios.get(`https://api.github.com/users/${params.user}`).then(
       (response) => {
-        setUser(response.data)
+        setUserData(response.data)
         console.log(response.data);        
       }).catch( response => {console.log(response)});
   }, [params.user])
@@ -46,7 +51,7 @@ export default function User() {
   return (
     <Layout>
       <form
-        className="flex w-full justify-center gap-4"
+        className="flex w-full justify-center gap-4 mb-8"
         onSubmit={(e) => {
           e.preventDefault()
           routeChange(userSearch.search)
@@ -57,7 +62,7 @@ export default function User() {
         <Button title="GO" />
       </form>
       <div className="flex flex-col w-full items-center justify-center gap-6">
-        {user.login}
+        <ProfileCard data={userData} />
       </div>
     </Layout>
   )
