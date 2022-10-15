@@ -6,9 +6,10 @@ import { Tooltip } from './Tooltip';
 
 interface ISearchBarProps{
   invalid?: boolean;
+  value?: string;
 }
 
-export default function SearchBar({invalid = false}: ISearchBarProps) {
+export function SearchBar({invalid = false, value}: ISearchBarProps) {
   const userSearch = useContext(SearchContext);
   return (
     <div className={
@@ -26,6 +27,7 @@ export default function SearchBar({invalid = false}: ISearchBarProps) {
         placeholder="GitHub User"
         onChange={e => userSearch.setSearch(e.target.value)}
         autoComplete={"off"}
+        value={value}
       />
       {invalid && 
         <Tooltip>

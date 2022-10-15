@@ -1,14 +1,12 @@
 import clsx from "clsx";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "./components/Button";
-import Footer from "./components/Footer";
-import {Header} from "./components/Header";
 import Layout from "./components/Layout";
 import Logo from "./components/Logo";
-import SearchBar from "./components/SearchBar";
 import { SearchContext } from "./contexts/SearchContext";
-import {ThemeContext} from './contexts/ThemeContext';
+import { ThemeContext } from './contexts/ThemeContext';
+import { Button } from "./components/Button";
+import { SearchBar } from "./components/SearchBar";
 
 function App() {
   const themeContext = useContext(ThemeContext);
@@ -40,10 +38,16 @@ function App() {
 
   return (
     <Layout>
-      <form className="flex flex-col items-center justify-center flex-1 gap-6" onSubmit={() => routeChange(userSearch.search)}>
+      <form
+        className="flex flex-col items-center justify-center flex-1 gap-6 w-full"
+        onSubmit={(e) => {
+          e.preventDefault()
+          routeChange(userSearch.search)
+        }
+      }>
         <Logo width={372} height={78} dark={themeContext.darkMode} />
-          <SearchBar invalid={invalidSearch}/>
-          <Button title="GO" type="submit" />
+        <SearchBar invalid={invalidSearch}/>
+        <Button title="GO" type="submit" />
       </form>
     </Layout>     
   )
