@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root{
-  @apply font-poppins
+  @apply font-poppins bg-zinc-900
 }
 
 main{
-  @apply w-screen h-screen flex flex-col;
+  @apply w-screen h-screen flex flex-col min-h-[840px];
 }

@@ -19,6 +19,7 @@ interface IUser {
 }
 
 interface IRepo {
+  id: string;
   name: string;
   html_url: string;
   stargazers_count: number;
@@ -53,15 +54,14 @@ export default function User() {
 
   useEffect(() => {
     axios.get(`https://api.github.com/users/${params.user}`)
-    .then((response) => {
-      setUserData(response.data)
-      axios.get(userData.repos_url).then(
-        repo => { setRepo(repo.data)
-        console.log(repo)
-        }      
-      );
-    })
+    .then((response) => { setUserData(response.data) })
     .catch( response => {console.log(response)});
+    axios.get(`https://api.github.com/users/${params.user}/repos`)
+    .then( (repo) => {
+      setRepo(repo.data);
+      console.log(repo.data);
+      }      
+    );
   }, [params.user])
   
   return (

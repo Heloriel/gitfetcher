@@ -2,6 +2,7 @@ import {FolderOpen, ArrowSquareOut} from 'phosphor-react';
 
 interface IRepo {
   data: {
+    id: string;
     name: string;
     html_url: string;
     stargazers_count: number;
