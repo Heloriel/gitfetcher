@@ -12,6 +12,24 @@ interface IRepo {
 }
 
 export default function Repository({data}: IRepo) {
+
+  function lastUpdated(){
+    // return new Date(data.updated_at).toISOString().substr(11, 8);
+    const date1 = new Date(data.updated_at);
+    const date2 = new Date(Date.now());
+
+    // One day in milliseconds
+    const oneDay = 1000 * 60 * 60 * 24;
+
+    // Calculating the time difference between two dates
+    const diffInTime = date2.getTime() - date1.getTime();
+
+    // Calculating the no. of days between two dates
+    const diffInDays = Math.round(diffInTime / oneDay);
+
+    return diffInDays;
+  }
+
   return (
     <li
       className="
@@ -27,7 +45,7 @@ export default function Repository({data}: IRepo) {
           <span className='text-xl font-bold'>{data.name}</span>
         </div>
         <div>
-          <span className='text-xs text-zinc-500'>{data.updated_at}</span>
+          <span className='text-xs text-zinc-500'>Last updated {lastUpdated()} days ago.</span>
         </div>
       </div>
       <div>
