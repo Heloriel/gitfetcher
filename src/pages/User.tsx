@@ -6,6 +6,7 @@ import { SearchBar } from '../components/SearchBar';
 import { Button } from '../components/Button';
 import { SearchContext } from "../contexts/SearchContext";
 import { ProfileCard } from "../components/ProfileCard";
+import { Repositories } from "../components/Repositories";
 
 interface IUser {
   login: string;
@@ -14,11 +15,21 @@ interface IUser {
   avatar_url: string;
   followers: number;
   following: number;
+  repos_url: string;
+}
+
+interface IRepo {
+  name: string;
+  html_url: string;
+  stargazers_count: number;
+  watchers_count: number;
+  updated_at: string;
 }
 
 export default function User() {
   const params = useParams<{user: string}>();
   const [userData, setUserData] = useState({} as IUser);
+  const [repo, setRepo] = useState<IRepo[]>();
   const [invalidSearch, setInvalidSearch] = useState(false);
   const navigate = useNavigate();
 
@@ -41,17 +52,22 @@ export default function User() {
   }, [userSearch.search])
 
   useEffect(() => {
-    axios.get(`https://api.github.com/users/${params.user}`).then(
-      (response) => {
-        setUserData(response.data)
-        console.log(response.data);        
-      }).catch( response => {console.log(response)});
+    axios.get(`https://api.github.com/users/${params.user}`)
+    .then((response) => {
+      setUserData(response.data)
+      axios.get(userData.repos_url).then(
+        repo => { setRepo(repo.data)
+        console.log(repo)
+        }      
+      );
+    })
+    .catch( response => {console.log(response)});
   }, [params.user])
   
   return (
     <Layout>
       <form
-        className="flex w-full justify-center gap-4 mb-8"
+        className="flex w-full justify-center gap-4 my-10"
         onSubmit={(e) => {
           e.preventDefault()
           routeChange(userSearch.search)
@@ -61,8 +77,9 @@ export default function User() {
         <SearchBar invalid={invalidSearch} value={userSearch.search} />
         <Button title="GO" />
       </form>
-      <div className="flex flex-col w-full items-center justify-center gap-6">
+      <div className="flex w-full h-full items-start justify-center gap-6">
         <ProfileCard data={userData} />
+        <Repositories data={repo} />
       </div>
     </Layout>
   )
