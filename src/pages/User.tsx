@@ -66,21 +66,21 @@ export default function User() {
   
   return (
     <Layout>
-      <form
-        className="flex w-full justify-center gap-4 my-10"
-        onSubmit={(e) => {
-          e.preventDefault()
-          routeChange(userSearch.search)
+        <form
+          className="flex w-full flex-wrap justify-center gap-4 my-10"
+          onSubmit={(e) => {
+            e.preventDefault()
+            routeChange(userSearch.search)
+          }
         }
-      }  
-      >
-        <SearchBar invalid={invalidSearch} value={userSearch.search} />
-        <Button title="GO" />
-      </form>
-      <div className="flex w-full h-full items-start justify-center gap-6">
-        <ProfileCard data={userData} repo={repo}/>
-        <Repositories data={repo} />
-      </div>
+        >
+          <SearchBar invalid={invalidSearch} value={userSearch.search} />
+          <Button title="GO" />
+        </form>
+        <div className="flex flex-wrap w-full h-full items-start justify-center gap-6">
+          <ProfileCard data={userData} repo={repo}/>
+          <Repositories data={repo} />
+        </div>
     </Layout>
   )
 }

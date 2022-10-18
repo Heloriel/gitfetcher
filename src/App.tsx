@@ -45,7 +45,7 @@ function App() {
           routeChange(userSearch.search)
         }
       }>
-        <Logo width={372} height={78} dark={themeContext.darkMode} />
+        <Logo dark={themeContext.darkMode} className="aspect-auto w-[200px] md:w-[372px]" />
         <SearchBar invalid={invalidSearch}/>
         <Button title="GO" type="submit" />
       </form>
