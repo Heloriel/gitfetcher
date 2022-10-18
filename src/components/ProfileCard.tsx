@@ -1,4 +1,5 @@
 import {UsersThree, Heart, Link} from 'phosphor-react';
+import { useEffect } from 'react';
 
 interface IProfileCardProps {
   data: {
@@ -8,10 +9,24 @@ interface IProfileCardProps {
     avatar_url: string;
     followers: number;
     following: number;
-  }
+  },
+  repo: {
+    language: string;
+  }[] | undefined;
 }
 
 export function ProfileCard(props: IProfileCardProps) {
+
+  // const mostUsed: string[] = [];
+
+  // useEffect(() => {
+  //   props.repo?.map((repo)=>{
+  //     mostUsed.push(repo.language);
+  //   });
+  //   const counts = {};
+  //   mostUsed.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });    
+  // }, [props.repo])  
+
   return (
     <aside
       className="

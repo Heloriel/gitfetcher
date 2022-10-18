@@ -25,6 +25,7 @@ interface IRepo {
   stargazers_count: number;
   watchers_count: number;
   updated_at: string;
+  language: string;
 }
 
 export default function User() {
@@ -59,7 +60,6 @@ export default function User() {
     axios.get(`https://api.github.com/users/${params.user}/repos`)
     .then( (repo) => {
       setRepo(repo.data);
-      console.log(repo.data);
       }      
     );
   }, [params.user])
@@ -78,7 +78,7 @@ export default function User() {
         <Button title="GO" />
       </form>
       <div className="flex w-full h-full items-start justify-center gap-6">
-        <ProfileCard data={userData} />
+        <ProfileCard data={userData} repo={repo}/>
         <Repositories data={repo} />
       </div>
     </Layout>

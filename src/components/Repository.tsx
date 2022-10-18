@@ -8,6 +8,7 @@ interface IRepo {
     stargazers_count: number;
     watchers_count: number;
     updated_at: string;
+    language: string;
   }
 }
 
@@ -28,7 +29,7 @@ export default function Repository({data}: IRepo) {
     const diffInDays = Math.round(diffInTime / oneDay);
 
     return diffInDays;
-  }
+  } 
 
   return (
     <li
@@ -48,9 +49,11 @@ export default function Repository({data}: IRepo) {
           <span className='text-xs text-zinc-500'>Last updated {lastUpdated()} days ago.</span>
         </div>
       </div>
-      <div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png" alt="ts" className='max-w-[32px]' />
-      </div>
+      {data.language &&
+        <div>
+          <img src={`https://xesque.rocketseat.dev/platform/tech/${data.language}.svg`.toLocaleLowerCase()} onError={(event) => event.currentTarget.style.display = 'none'} className='max-w-[32px]' />
+        </div>
+      }
       </a>
     </li>
   )
