@@ -15,10 +15,10 @@ interface IRepo {
 
 export function Repositories({data}: IRepo) {
   return (
-    <div className="flex flex-col max-h-[484px] h-full flex-1 border border-zinc-300 dark:bg-zinc-800 dark:border-none rounded-lg px-4">
-      <h2 className="text-4xl font-bold px-9 py-6">Repositories ({data ? data.length : 0})</h2>
+    <div className="flex flex-col flex-1">
+      <h2 className="text-4xl font-bold pb-6">Repositories ({data ? data.length : 0})</h2>
       <hr className="border-zinc-700" />
-      <ul className="flex flex-col gap-2 overflow-y-auto h-full max-h-full p-6 scrollbar-thin scrollbar-thumb-zinc-500">
+      <ul className="flex flex-col gap-2 overflow-y-auto h-full max-h-full py-6 scrollbar-thin scrollbar-thumb-zinc-500">
         {(data && data.length > 0 )? data.map(
           (repo) => {
             return( 

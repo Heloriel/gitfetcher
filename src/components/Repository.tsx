@@ -34,8 +34,8 @@ export default function Repository({data}: IRepo) {
   return (
     <li
       className="
-        flex w-full items-center bg-zinc-100 dark:bg-zinc-700 rounded-lg hover:bg-zinc-200
-        dark:hover:bg-zinc-600"
+        flex w-full items-center  rounded-lg border border-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800
+        hover:bg-zinc-100 transition-colors"
       >
       <a href={data.html_url} target={'_blank'} className="flex w-full px-4 py-2 gap-4 items-center">
       <div>
