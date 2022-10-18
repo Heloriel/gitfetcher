@@ -11,9 +11,10 @@ interface IRepo {
     updated_at: string;
     language: string;
   }[] | undefined;
+  error: string | null;
 }
 
-export function Repositories({data}: IRepo) {
+export function Repositories({data, error}: IRepo) {
   return (
     <div className="flex flex-col flex-1">
       <h2 className="text-4xl font-bold pb-6">Repositories ({data ? data.length : 0})</h2>
@@ -25,7 +26,7 @@ export function Repositories({data}: IRepo) {
             <Repository data={repo} key={repo.id} />
             )
           }
-        ) : <div className="flex flex-1 items-center justify-center text-2xl"><CircleNotch size={32} className="animate-spin" /></div>}
+        ) : <div className="flex flex-1 items-center justify-center text-2xl">{error == null ? <CircleNotch size={32} className="animate-spin" /> : error}</div>}
       </ul>
     </div>
   )

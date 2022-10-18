@@ -28,10 +28,17 @@ interface IRepo {
   language: string;
 }
 
+interface IError{
+  data:{
+    message: string;
+  }
+}
+
 export default function User() {
   const params = useParams<{user: string}>();
   const [userData, setUserData] = useState({} as IUser);
   const [repo, setRepo] = useState<IRepo[]>();
+  const [errorMessage, setErrorMessage] = useState<string | null>("");
   const [invalidSearch, setInvalidSearch] = useState(false);
   const navigate = useNavigate();
 
@@ -54,14 +61,22 @@ export default function User() {
   }, [userSearch.search])
 
   useEffect(() => {
-    axios.get(`https://api.github.com/users/${params.user}`)
-    .then((response) => { setUserData(response.data) })
-    .catch( response => {console.log(response)});
-    axios.get(`https://api.github.com/users/${params.user}/repos`)
-    .then( (repo) => {
-      setRepo(repo.data);
-      }      
-    );
+    axios.get(`https://api.github.com/users/${params.user}`,{
+      headers: {
+        Authorization: `${import.meta.env.VITE_API_TOKEN}:x-oauth-basic`,
+      }
+    }).then(
+      (response) => {
+      setUserData(response.data)
+      axios.get(`https://api.github.com/users/${params.user}/repos`,{
+        headers: {
+          Authorization: `${import.meta.env.VITE_API_TOKEN}:x-oauth-basic`,
+        }
+      }).then(repo => setRepo(repo.data));    
+    })
+    .catch( error => {
+      setErrorMessage(error.response.data.message)   
+    });
   }, [params.user])
   
   return (
@@ -79,7 +94,7 @@ export default function User() {
         </form>
         <div className="flex flex-wrap w-full h-full items-start justify-center gap-6">
           <ProfileCard data={userData} repo={repo}/>
-          <Repositories data={repo} />
+          <Repositories data={repo} error={errorMessage} />
         </div>
     </Layout>
   )
