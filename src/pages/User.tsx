@@ -63,14 +63,14 @@ export default function User() {
   useEffect(() => {
     axios.get(`https://api.github.com/users/${params.user}`,{
       headers: {
-        Authorization: `${import.meta.env.VITE_API_TOKEN}:x-oauth-basic`,
+        Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
       }
     }).then(
       (response) => {
       setUserData(response.data)
       axios.get(`https://api.github.com/users/${params.user}/repos`,{
         headers: {
-          Authorization: `${import.meta.env.VITE_API_TOKEN}:x-oauth-basic`,
+          Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
         }
       }).then(repo => setRepo(repo.data));    
     })
@@ -87,8 +87,7 @@ export default function User() {
             e.preventDefault()
             routeChange(userSearch.search)
           }
-        }
-        >
+        }>
           <SearchBar invalid={invalidSearch} value={userSearch.search} />
           <Button title="GO" />
         </form>
