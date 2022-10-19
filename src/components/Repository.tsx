@@ -1,4 +1,4 @@
-import {FolderOpen, ArrowSquareOut} from 'phosphor-react';
+import {FolderOpen, GitFork, Star} from 'phosphor-react';
 
 interface IRepo {
   data: {
@@ -6,7 +6,7 @@ interface IRepo {
     name: string;
     html_url: string;
     stargazers_count: number;
-    watchers_count: number;
+    forks: number;
     updated_at: string;
     language: string;
   }
@@ -48,6 +48,14 @@ export default function Repository({data}: IRepo) {
         <div>
           <span className='text-xs text-zinc-500'>Last updated {lastUpdated()} days ago.</span>
         </div>
+      </div>
+      <div className='flex gap-2'>
+        <span>{data.forks}</span>
+        <GitFork size={22} />
+      </div>
+      <div className='flex gap-2'>
+        <span>{data.stargazers_count}</span>
+        <Star size={22} />
       </div>
       {data.language &&
         <div>

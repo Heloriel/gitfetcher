@@ -23,7 +23,7 @@ interface IRepo {
   name: string;
   html_url: string;
   stargazers_count: number;
-  watchers_count: number;
+  forks: number;
   updated_at: string;
   language: string;
 }
@@ -36,7 +36,7 @@ interface IError{
 
 export default function User() {
   const params = useParams<{user: string}>();
-  const [userData, setUserData] = useState({} as IUser);
+  const [userData, setUserData] = useState({} as IUser | undefined);
   const [repo, setRepo] = useState<IRepo[]>();
   const [errorMessage, setErrorMessage] = useState<string | null>("");
   const [invalidSearch, setInvalidSearch] = useState(false);
@@ -75,7 +75,18 @@ export default function User() {
       }).then(repo => setRepo(repo.data));    
     })
     .catch( error => {
-      setErrorMessage(error.response.data.message)   
+      setErrorMessage(error.response.data.message)
+      // const data = {
+      //   login: 'User Not Found',
+      //   name: userSearch.search,
+      //   blog: '',
+      //   avatar_url: '',
+      //   followers: 0,
+      //   following: 0,
+      //   repos_url: '',
+      // }
+      setUserData(undefined);
+      setRepo(undefined);   
     });
   }, [params.user])
   

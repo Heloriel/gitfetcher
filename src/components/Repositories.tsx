@@ -7,7 +7,7 @@ interface IRepo {
     name: string;
     html_url: string;
     stargazers_count: number;
-    watchers_count: number;
+    forks: number;
     updated_at: string;
     language: string;
   }[] | undefined;
@@ -17,9 +17,9 @@ interface IRepo {
 export function Repositories({data, error}: IRepo) {
   return (
     <div className="flex flex-col flex-1">
-      <h2 className="text-4xl font-bold pb-6">Repositories ({data ? data.length : 0})</h2>
+      <h2 className="text-4xl font-bold pb-6 text-center md:text-start">Repositories ({data ? data.length : 0})</h2>
       <hr className="border-zinc-700" />
-      <ul className="flex flex-col gap-2 overflow-y-auto h-full max-h-full py-6 scrollbar-thin scrollbar-thumb-zinc-500">
+      <ul className="flex flex-col gap-2 h-full max-h-full py-6">
         {(data && data.length > 0 )? data.map(
           (repo) => {
             return( 
