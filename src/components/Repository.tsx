@@ -59,7 +59,12 @@ export default function Repository({data}: IRepo) {
       </div>
       {data.language &&
         <div>
-          <img src={`https://xesque.rocketseat.dev/platform/tech/${data.language}.svg`.toLocaleLowerCase()} onError={(event) => event.currentTarget.style.display = 'none'} className='max-w-[32px]' />
+          <img
+            src={`https://xesque.rocketseat.dev/platform/tech/${data.language}.svg`.toLocaleLowerCase()}
+            onError={(event) => event.currentTarget.style.display = 'none'}
+            className='max-w-[32px]'
+            title={data.language}
+          />
         </div>
       }
       </a>

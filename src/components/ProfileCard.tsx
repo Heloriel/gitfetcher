@@ -32,13 +32,13 @@ export function ProfileCard(props: IProfileCardProps) {
     <aside
       className="
         flex flex-col justify-center items-center border border-zinc-300
-        dark:bg-zinc-800 dark:border-none rounded-lg p-8 gap-6 max-w-[350px] min-w-[350px]
+        dark:bg-zinc-800 dark:border-none rounded-lg p-8 gap-6 w-full sm:max-w-[350px] sm:min-w-[350px]
       "
     >
       <img
         src={props.data ? props.data.avatar_url : '/images/default_user.jpg'}
         alt="User Profile Picture"
-        className="rounded-full min-w-[256px] max-w-[256px] aspect-auto"  
+        className="rounded-full min-w-[200px] max-w-[200px] aspect-auto"  
       />
       <div className="text-center">
         <span className="block text-2xl font-bold">{props.data ? props.data.name : userName.user}</span>
@@ -46,22 +46,18 @@ export function ProfileCard(props: IProfileCardProps) {
       </div>
       <div className="flex w-full">
         {props.data ?
-        <span className={'flex flex-1 gap-2'}>
+        <span className={'flex flex-1 gap-2 justify-center'}>
           <UsersThree size={22} /> {props.data.followers}
         </span>
         : ''
         }
         { props.data ?
-        <span className={'flex flex-1 justify-end gap-2'}>
+        <span className={'flex flex-1 justify-center gap-2'}>
           <Heart size={22} /> {props.data.following}
         </span>
         : ''
         }
       </div>
-      {props.data?.blog &&
-        <a href={props.data.blog} className="flex items-center gap-2" target={'_blank'}>
-          <Link size={16} /> {props.data.blog}
-        </a>}
     </aside>
   )
 }

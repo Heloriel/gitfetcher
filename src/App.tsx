@@ -39,7 +39,7 @@ function App() {
   return (
     <Layout>
       <form
-        className="flex flex-1 flex-col items-center justify-center flex-1 gap-6 w-full"
+        className="flex flex-1 flex-col items-center justify-center gap-6 w-full"
         onSubmit={(e) => {
           e.preventDefault()
           routeChange(userSearch.search)

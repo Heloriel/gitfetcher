@@ -76,15 +76,6 @@ export default function User() {
     })
     .catch( error => {
       setErrorMessage(error.response.data.message)
-      // const data = {
-      //   login: 'User Not Found',
-      //   name: userSearch.search,
-      //   blog: '',
-      //   avatar_url: '',
-      //   followers: 0,
-      //   following: 0,
-      //   repos_url: '',
-      // }
       setUserData(undefined);
       setRepo(undefined);   
     });
@@ -102,8 +93,18 @@ export default function User() {
           <SearchBar invalid={invalidSearch} value={userSearch.search} />
           <Button title="GO" />
         </form>
-        <div className="flex flex-wrap w-full h-full items-start justify-center gap-6">
-          <ProfileCard data={userData} repo={repo}/>
+        <div className="flex flex-wrap w-full h-full items-start justify-center gap-6 mb-4">
+          <div className="flex flex-col gap-y-4 items-center">
+            <ProfileCard data={userData} repo={repo}/>
+            {userData &&
+              <Button
+                title="Open in GitHub"
+                className="w-full"
+                onClick={
+                  () => window.open(`https://github.com/${userData.login}`, `_blank`)
+                }
+              />}
+          </div>
           <Repositories data={repo} error={errorMessage} />
         </div>
     </Layout>

@@ -14,7 +14,7 @@ export default function Layout({children}: ILayoutProps) {
     <main className={clsx({'dark': context.darkMode})}>
       <div className="flex flex-col min-h-screen justify-between bg-white dark:bg-zinc-900 dark:text-white">
       <Header />
-        <div className="flex flex-col flex-1 items-center justify-center px-2 md:px-16 gap-4">
+        <div className="flex flex-col flex-1 items-center justify-center px-1 md:px-16 gap-4">
           {children}
         </div>
       <Footer />
