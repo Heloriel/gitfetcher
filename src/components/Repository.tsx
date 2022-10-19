@@ -34,16 +34,16 @@ export default function Repository({data}: IRepo) {
   return (
     <li
       className="
-        flex w-full items-center  rounded-lg border border-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800
+        flex w-full items-center  rounded-md border border-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800
         hover:bg-zinc-100 transition-colors"
       >
-      <a href={data.html_url} target={'_blank'} className="flex w-full px-4 py-2 gap-4 items-center">
-      <div>
+      <a href={data.html_url} target={'_blank'} className="flex w-full px-4 py-2 gap-2 items-center">
+      <div className='hidden sm:block'>
         <FolderOpen size={38} />
       </div>
       <div className='flex-1'>
         <div>
-          <span className='text-xl font-bold'>{data.name}</span>
+          <span className='text-sm sm:text-xl font-bold'>{data.name}</span>
         </div>
         <div>
           <span className='text-xs text-zinc-500'>Last updated {lastUpdated()} days ago.</span>
@@ -58,7 +58,7 @@ export default function Repository({data}: IRepo) {
         <Star size={22} />
       </div>
       {data.language &&
-        <div>
+        <div className='hidden sm:block'>
           <img
             src={`https://xesque.rocketseat.dev/platform/tech/${data.language}.svg`.toLocaleLowerCase()}
             onError={(event) => event.currentTarget.style.display = 'none'}

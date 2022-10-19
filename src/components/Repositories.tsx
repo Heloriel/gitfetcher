@@ -17,7 +17,7 @@ interface IRepo {
 export function Repositories({data, error}: IRepo) {
   return (
     <div className="flex flex-col flex-1">
-      <h2 className="text-4xl font-bold pb-6 text-center md:text-start">Repositories ({data ? data.length : 0})</h2>
+      <h2 className="text-4xl font-bold pb-6 text-center lg:text-start">Repositories</h2>
       <hr className="border-zinc-700" />
       <ul className="flex flex-col gap-2 h-full max-h-full py-6">
         {(data && data.length > 0 )? data.map(

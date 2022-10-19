@@ -1,4 +1,5 @@
 import {UsersThree, Heart, Link} from 'phosphor-react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 interface IProfileCardProps {
@@ -32,7 +33,7 @@ export function ProfileCard(props: IProfileCardProps) {
     <aside
       className="
         flex flex-col justify-center items-center border border-zinc-300
-        dark:bg-zinc-800 dark:border-none rounded-lg p-8 gap-6 w-full sm:max-w-[350px] sm:min-w-[350px]
+        dark:border-zinc-700 rounded-lg p-8 gap-6 w-full sm:max-w-[350px] sm:min-w-[350px]
       "
     >
       <img

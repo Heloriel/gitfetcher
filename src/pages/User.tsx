@@ -99,7 +99,7 @@ export default function User() {
             {userData &&
               <Button
                 title="Open in GitHub"
-                className="w-full"
+                className="w-full rounded-lg border-zinc-500 hover:bg-zinc-700 hover:border-zinc-500"
                 onClick={
                   () => window.open(`https://github.com/${userData.login}`, `_blank`)
                 }
