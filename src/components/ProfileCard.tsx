@@ -19,16 +19,6 @@ interface IProfileCardProps {
 export function ProfileCard(props: IProfileCardProps) {
   const userName = useParams<{user: string;}>();
 
-  // const mostUsed: string[] = [];
-
-  // useEffect(() => {
-  //   props.repo?.map((repo)=>{
-  //     mostUsed.push(repo.language);
-  //   });
-  //   const counts = {};
-  //   mostUsed.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });    
-  // }, [props.repo])  
-
   return (
     <aside
       className="
